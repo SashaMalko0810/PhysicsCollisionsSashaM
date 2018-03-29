@@ -56,6 +56,27 @@ physics.addBody(beam, "static", {friction=0.5, bounce=0.3})
 
 ------------------------------------------------------------------------------------------------
 
+--Create a wall
+local wall  = display.newImage("Images/beam_long.png", 0, 0)
+
+--Set the x and y pos
+wall.x = 1000
+wall.y = 300
+
+--set the wall size
+wall.width = 900
+wall.height = 100
+
+--send it to the back layer
+wall:toBack()
+
+--rotate the wall 90 degrees so its straight up
+wall:rotate(90)
+
+--Add to physics
+physics.addBody(wall, "static", {friction=0.5, bounce=0.3})
+--------------------------------------------------------------------------------------------------
+
 --Create bkg
 local bkg = display.newImage("Images/bkg.png", 0, 0)
 
@@ -80,27 +101,30 @@ local function firstBall()
 	local ball1 = display.newImage("Images/super_ball.png", 0, 0)
 
 	--add to physics
-	physics.addBody(ball1, {density=1.0, friction=0.5, bounce=0.3, radius=25})
+	physics.addBody(ball1, {density=2.0, friction=0.9, bounce=0.5, radius=75}) 
+
+    --make it bigger than the original size
+	ball1:scale(3,3)
 end
 
 --------------------------------------------------------------------------------------------------
 
 --create the second ball
 local function secondBall()
-	--creating first ball
+	--creating second ball
 	local ball2 = display.newImage("Images/super_ball.png", 0, 0)
 
 	--adding to physics
-	physics.addBody(ball2, {density=1.0, friction=0.5, bounce=0.3, radius=12.5})
+	physics.addBody(ball2, {density=1.0, friction=0.5, bounce=0.3, radius=50})
 
-	--make it smaller than the original size
-	ball2:scale(0.5,0.5)
+	--make it bigger than the original size
+	ball2:scale(2,2)
 end
 --------------------------------------------------------------------------------------------------
 
---create the first ball
+--create the third ball
 local function thirdBall()
-	--creating first ball
+	--creating third ball
 	local ball3 = display.newImage("Images/super_ball.png", 0, 0)
 
 	--add to physics
@@ -109,9 +133,9 @@ end
 
 --------------------------------------------------------------------------------------------------
 
---create the second ball
+--create the fourth ball
 local function fourthBall()
-	--creating first ball
+	--creating fourth ball
 	local ball4 = display.newImage("Images/super_ball.png", 0, 0)
 
 	--adding to physics
@@ -127,5 +151,5 @@ end
 
 timer.performWithDelay(0, firstBall)
 timer.performWithDelay(500, secondBall)
-timer.performWithDelay(1000, firstBall)
-timer.performWithDelay(1500, secondBall)
+timer.performWithDelay(1200, thirdBall)
+timer.performWithDelay(1700, fourthBall)
